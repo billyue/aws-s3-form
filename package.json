@@ -18,6 +18,10 @@
   "scripts": {
     "test": "grunt test"
   },
+  "files": [
+    "lib/",
+    "index.js"
+  ],
   "engines": {
     "node": ">= 0.10.0"
   },
