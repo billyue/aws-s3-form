@@ -50,6 +50,10 @@ class AwsS3Form extends require( "mpbasic" )()
 			acl: "public-read"
 			# **AwsS3Form.useUuid** *Boolean* Use a uuid for better security
 			useUuid: true
+			# **AwsS3Form.maxFileSizeInBytes 0B
+			minFileSizeInBytes: 0
+			# **AwsS3Form.maxFileSizeInBytes 1GB
+			maxFileSizeInBytes: 1024*1024*1024
 
 	###
 	## create
@@ -151,7 +155,7 @@ class AwsS3Form extends require( "mpbasic" )()
 				{ "x-amz-algorithm": "AWS4-HMAC-SHA256" }
 				{ "x-amz-date": _predef.amzdate or @_shortDate( _date ) }
 				#[ "starts-with", "$Content-Type", contentType ]
-				#["content-length-range", 0, @settings.maxFileSize ]
+				["content-length-range", @config.minFileSizeInBytes, @config.maxFileSizeInBytes ]
 			]
 
 		if _predef.success_action_status?
