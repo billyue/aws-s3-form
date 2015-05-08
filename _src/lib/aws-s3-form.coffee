@@ -98,7 +98,7 @@ class AwsS3Form extends require( "mpbasic" )()
 			_secure = @config.secure
 
 		data =
-			action: "#{ if _secure then "https" else "http" }://s3-#{@config.region}.amazonaws.com/#{ @config.bucket }"
+ 			action: "#{ if _secure then "https" else "http" }://#{ @config.bucket }.s3.amazonaws.com/"
 			filefield: "file"
 			fields:
 				key: "#{( options.keyPrefix or @config.keyPrefix )}#{filename}"
