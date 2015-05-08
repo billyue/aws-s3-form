@@ -51,9 +51,9 @@ class AwsS3Form extends require( "mpbasic" )()
 			# **AwsS3Form.useUuid** *Boolean* Use a uuid for better security
 			useUuid: true
 			# **AwsS3Form.maxFileSizeInBytes 0B
-			minFileSizeInBytes: 0
+			minFileSizeInBytes: "0"
 			# **AwsS3Form.maxFileSizeInBytes 1GB
-			maxFileSizeInBytes: 1024*1024*1024
+			maxFileSizeInBytes: "1073741824"
 
 	###
 	## create
@@ -112,6 +112,7 @@ class AwsS3Form extends require( "mpbasic" )()
 				"X-Amz-Date": _data.amzdate
 				"Policy": _policyB64
 				"X-Amz-Signature": _signature.toString()
+				"maxFileSizeInBytes": @config.maxFileSizeInBytes
 
 		if options.redirectUrlTemplate?
 			data.fields.success_action_redirect = @_redirectUrl( options.redirectUrlTemplate, filename: filename )
